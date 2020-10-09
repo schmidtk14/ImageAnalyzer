@@ -2,28 +2,11 @@ import cv2
 import numpy as np
 import imutils
 import pyautogui
-import pytesseract
 from Coordinate import Coordinate
 
 
 class ImageAnalyzer(object):
-    THRESHOLD = .45
-
-    @staticmethod
-    # todo refactor find_text return coordinates of found text
-    # todo make separate method to scrape all text from image and return text
-    def find_text(rect_coord: Coordinate, text: str):
-        # uncomment out line below to run on windows, you must install pytesseract first, please see
-        # install_instructions.txt for detailed instructions pytesseract.pytesseract.tesseract_cmd = "C:\Program
-        # Files (x86)\Tesseract-OCR\tesseract.exe"
-        text_found = False
-        image = pyautogui.screenshot(
-            region=(rect_coord.topLeftX, rect_coord.topLeftY, rect_coord.bottomRightX, rect_coord.bottomRightY))
-        image_text = pytesseract.image_to_string(image)
-        if image_text.__contains__(text):
-            text_found = True
-
-        return text_found
+    THRESHOLD = .5
 
     # find and locate template image within source image
     # returns list of coordinates for found image
@@ -188,7 +171,6 @@ class ImageAnalyzer(object):
                 break
             edged = cv2.Canny(resized, 50, 200)
             result = cv2.matchTemplate(edged, template, cv2.TM_CCOEFF_NORMED)
-
             (_, maxVal, _, maxLoc) = cv2.minMaxLoc(result)
 
             #find all images which pass the threshold of .6
@@ -215,5 +197,5 @@ class ImageAnalyzer(object):
 
 # to run quick demonstration of image analyzer's find_image_draw_rectangle method uncomment below lines and run
 # python file
-ia = ImageAnalyzer()
-ia.find_image_draw_rectangle("car.png", "caronroad.jpeg")
+#ia = ImageAnalyzer()
+#ia.find_image_draw_rectangle("car.png", "caronroad.jpeg")
