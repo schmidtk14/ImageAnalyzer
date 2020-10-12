@@ -14,6 +14,7 @@ class ImageAnalyzer(object):
         # load template image and source image and convert to grayscale
         template = cv2.imread(template_path)
         template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+        # detect edges of image
         template = cv2.Canny(template, 50, 200)
         (tH, tW) = template.shape[:2]
         image = cv2.imread(source_path)
@@ -60,6 +61,7 @@ class ImageAnalyzer(object):
         # load template image and source image and convert to grayscale
         template = cv2.imread(template_path)
         template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+        #detect edges of image
         template = cv2.Canny(template, 50, 200)
         (tH, tW) = template.shape[:2]
         image = cv2.imread(source_path)
@@ -111,6 +113,7 @@ class ImageAnalyzer(object):
         # load template image and source image and convert to grayscale
         template = cv2.imread(template_path)
         template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+        # detect edges of image
         template = cv2.Canny(template, 50, 200)
         (tH, tW) = template.shape[:2]
         image = pyautogui.screenshot()
@@ -155,6 +158,7 @@ class ImageAnalyzer(object):
         # load template image and convert to grayscale
         template = cv2.imread(image_path)
         template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
+        # detect edges of image
         template = cv2.Canny(template, 50, 200)
         (tH, tW) = template.shape[:2]
         image = pyautogui.screenshot()
